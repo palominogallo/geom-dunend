@@ -2,7 +2,7 @@
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
   <define>
     <rotation name="LArTSub_rot" unit="degree" x="0" y="0" z="0"/>
-    <position name="LArTSubLArTPlane_lv0_pos" unit="cm" x="0.0" y="0.0" z="-92.5"/>
+    <position name="LArTSubLArTPlane_lv0_pos" unit="cm" x="0.0" y="0.0" z="-187.5"/>
     <rotation name="LArTracker_rot" unit="degree" x="0" y="90" z="0"/>
     <position name="LArTrackerLArTSub_lv_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
     <position name="PrimaryLArTracker_lv_pos" unit="cm" x="0.0" y="0.0" z="-275.0"/>
@@ -305,8 +305,8 @@
     </material>
   </materials>
   <solids>
-    <box lunit="cm" name="LArTPlane" x="250.0" y="200.0" z="5.0"/>
-    <box lunit="cm" name="LArTSub" x="250.0" y="200.0" z="200.0"/>
+    <box lunit="cm" name="LArTPlane" x="440.0" y="390.0" z="5.0"/>
+    <box lunit="cm" name="LArTSub" x="440.0" y="390.0" z="390.0"/>
     <box lunit="cm" name="LArTracker" x="400.0" y="400.0" z="450.0"/>
     <box lunit="cm" name="Primary" x="400.0" y="400.0" z="1000.0"/>
     <box lunit="cm" name="DetEnclosure" x="800.0" y="800.0" z="1400.0"/>
