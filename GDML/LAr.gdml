@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="ASCII"?>
 <gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
   <define>
-    <rotation name="LArTSub_rot" unit="degree" x="0" y="0" z="0"/>
-    <position name="LArTSubLArTPlane_lv0_pos" unit="cm" x="0.0" y="0.0" z="-187.5"/>
-    <rotation name="LArTracker_rot" unit="degree" x="0" y="90" z="0"/>
-    <position name="LArTrackerLArTSub_lv_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
-    <position name="PrimaryLArTracker_lv_pos" unit="cm" x="0.0" y="0.0" z="-275.0"/>
-    <position name="Primary_lv_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <rotation name="LArTracker_rot" unit="degree" x="0" y="0" z="0"/>
+    <position name="LArTrackervolLArTSub_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <position name="PrimaryvolLArTracker_pos_0" unit="cm" x="0.0" y="0.0" z="-275.0"/>
+    <position name="volPrimary_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
     <rotation name="noRotate" unit="degree" x="0" y="0" z="0"/>
     <rotation name="r90aboutX" unit="degree" x="90" y="0" z="0"/>
     <rotation name="rminus90aboutX" unit="degree" x="-90" y="0" z="0"/>
@@ -15,7 +13,7 @@
     <rotation name="rminus90aboutY" unit="degree" x="0" y="-90" z="0"/>
     <rotation name="r90aboutZ" unit="degree" x="0" y="0" z="90"/>
     <rotation name="r90aboutXZ" unit="degree" x="90" y="0" z="90"/>
-    <position name="DetEnclosure_lv_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
+    <position name="volDetEnclosure_pos" unit="cm" x="0.0" y="0.0" z="0.0"/>
     <position name="center"/>
     <rotation name="identity"/>
   </define>
@@ -73,6 +71,9 @@
     </element>
     <element Z="28" formula="Ni" name="nickel">
       <atom value="58.6934"/>
+    </element>
+    <element Z="29" formula="Cu" name="copper">
+      <atom value="63.546"/>
     </element>
     <element Z="35" formula="Br" name="bromine">
       <atom value="79.904"/>
@@ -201,6 +202,10 @@
       <D value="2.7"/>
       <composite n="1" ref="aluminum"/>
     </material>
+    <material formula="" name="Copper">
+      <D value="8.96"/>
+      <composite n="1" ref="copper"/>
+    </material>
     <material formula="" name="CarbonFiber">
       <D value="1.6"/>
       <composite n="1" ref="carbon"/>
@@ -303,71 +308,64 @@
       <D value="1.4"/>
       <composite n="1" ref="argon"/>
     </material>
+    <material formula="" name="KLOEEcal">
+      <D value="5.3"/>
+      <fraction n="0.42" ref="Lead"/>
+      <fraction n="0.48" ref="Scintillator"/>
+      <fraction n="0.1" ref="epoxy_resin"/>
+    </material>
   </materials>
   <solids>
-    <box lunit="cm" name="LArTPlane" x="440.0" y="390.0" z="5.0"/>
-    <box lunit="cm" name="LArTSub" x="440.0" y="390.0" z="390.0"/>
+    <cone aunit="radian" deltaphi="6.28318530718" lunit="cm" name="LArTSub" rmax1="40.0" rmax2="60.0" rmin1="0.0" rmin2="0.0" startphi="0.0" z="200.0"/>
     <box lunit="cm" name="LArTracker" x="400.0" y="400.0" z="450.0"/>
     <box lunit="cm" name="Primary" x="400.0" y="400.0" z="1000.0"/>
     <box lunit="cm" name="DetEnclosure" x="800.0" y="800.0" z="1400.0"/>
     <box lunit="cm" name="World" x="40000.0" y="40000.0" z="40000.0"/>
   </solids>
   <structure>
-    <volume name="LArTPlane_lv">
-      <materialref ref="Scintillator"/>
-      <solidref ref="LArTPlane"/>
-    </volume>
-    <volume name="LArTSub_lv">
-      <materialref ref="LAr"/>
+    <volume name="volLArTSub">
+      <materialref ref="Steel"/>
       <solidref ref="LArTSub"/>
-      <physvol>
-        <volumeref ref="LArTPlane_lv"/>
-        <positionref ref="LArTSubLArTPlane_lv0_pos"/>
-        <rotationref ref="LArTSub_rot"/>
-      </physvol>
-      <auxiliary auxtype="SensDet" auxvalue="LAr"/>
     </volume>
-    <volume name="LArTracker_lv">
+    <volume name="volLArTracker">
       <materialref ref="LAr"/>
       <solidref ref="LArTracker"/>
       <physvol>
-        <volumeref ref="LArTSub_lv"/>
-        <positionref ref="LArTrackerLArTSub_lv_pos"/>
+        <volumeref ref="volLArTSub"/>
+        <positionref ref="LArTrackervolLArTSub_pos"/>
         <rotationref ref="LArTracker_rot"/>
       </physvol>
-      <auxiliary auxtype="BField" auxvalue="(0.4 T, 0.0 T, 0.0 T)"/>
-      <auxiliary auxtype="EField" auxvalue="(500.0 V/cm, 0.0 V/cm, 0.0 V/cm)"/>
     </volume>
-    <volume name="Primary_lv">
+    <volume name="volPrimary">
       <materialref ref="Air"/>
       <solidref ref="Primary"/>
       <physvol>
-        <volumeref ref="LArTracker_lv"/>
-        <positionref ref="PrimaryLArTracker_lv_pos"/>
+        <volumeref ref="volLArTracker"/>
+        <positionref ref="PrimaryvolLArTracker_pos_0"/>
         <rotationref ref="identity"/>
       </physvol>
       <auxiliary auxtype="BField" auxvalue="(0.4 T, 0.0 T, 0.0 T)"/>
     </volume>
-    <volume name="DetEnclosure_lv">
+    <volume name="volDetEnclosure">
       <materialref ref="Air"/>
       <solidref ref="DetEnclosure"/>
       <physvol>
-        <volumeref ref="Primary_lv"/>
-        <positionref ref="Primary_lv_pos"/>
+        <volumeref ref="volPrimary"/>
+        <positionref ref="volPrimary_pos"/>
         <rotationref ref="identity"/>
       </physvol>
     </volume>
-    <volume name="World_lv">
+    <volume name="volWorld">
       <materialref ref="Rock"/>
       <solidref ref="World"/>
       <physvol>
-        <volumeref ref="DetEnclosure_lv"/>
-        <positionref ref="DetEnclosure_lv_pos"/>
+        <volumeref ref="volDetEnclosure"/>
+        <positionref ref="volDetEnclosure_pos"/>
         <rotationref ref="identity"/>
       </physvol>
     </volume>
   </structure>
   <setup name="Default" version="0">
-    <world ref="World_lv"/>
+    <world ref="volWorld"/>
   </setup>
 </gdml>

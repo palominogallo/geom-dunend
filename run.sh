@@ -5,9 +5,20 @@ DUNEGGD=${DUNEWORK}/dunendggd
 DUNEGGDCONFIG=${DUNEGGD}/duneggd/Config
 
 GEOMDUNE=${DUNEWORK}/geom-dunend
-GEOMCONFIG=${GEOMDUNE}/Config
+#GEOMCONFIG=${GEOMDUNE}/Config
+GEOMCONFIG=${GEOMDUNE}/ArgonCube
+
 
 OUTPUT=${GEOMDUNE}/GDML
 
-gegede-cli ${GEOMCONFIG}/PRIMggd-LAr-only.cfg ${GEOMCONFIG}/DETENCLOSURE-prim-only.cfg \
-${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/LAr.gdml
+#echo "GEOMCONFIG", $GEOMCONFIG
+
+#gegede-cli ${GEOMCONFIG}/PRIMggd-LAr-only.cfg ${GEOMCONFIG}/DETENCLOSURE-prim-only.cfg \
+#${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/LAAAr.gdml
+
+#gegede-cli ${GEOMCONFIG}/PRIMggd-Test.cfg ${GEOMCONFIG}/DETENCLOSURE-prim-only.cfg \
+#${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/LAr.gdml
+
+gegede-cli  ${GEOMCONFIG}/ArgoneCube.cfg ${GEOMCONFIG}/Downstream.cfg \
+${GEOMCONFIG}/PRIMggd.cfg ${GEOMCONFIG}/DETENCLOSURE.cfg \
+${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/ArCube_v0.gdml
