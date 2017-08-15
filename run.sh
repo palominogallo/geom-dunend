@@ -21,4 +21,4 @@ OUTPUT=${GEOMDUNE}/GDML
 
 gegede-cli  ${GEOMCONFIG}/ArgonCube.cfg \
 ${GEOMCONFIG}/PRIMggd.cfg ${GEOMCONFIG}/DETENCLOSURE.cfg \
-${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/ArCube_v1.gdml
+${DUNEGGDCONFIG}/WORLDggd.cfg -w World -o ${OUTPUT}/ArCube_v2.gdml
